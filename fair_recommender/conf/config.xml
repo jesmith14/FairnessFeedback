@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!-- Configuration file for FAT* tutorial 
+	 Example 01: Getting started with librec-auto -->
+
+<librec-auto>
+	<random-seed>202001</random-seed>
+	<thread-count>1</thread-count>
+	
+	<!-- PATH SECTION -->
+	<path>
+		<data>fair_recommender/data</data>
+		<result>result</result>
+		<log>log</log>
+	</path>
+	
+	<!-- DATA SECTION -->
+	<data>
+		<format>UIR</format>
+		<data-file format="text">ratings.csv</data-file>
+	</data>
+
+	<!-- FEATURES SECTION -->
+	<features>
+		<appender-class>net.librec.data.convertor.appender.ItemFeatureAppender</appender-class>
+		<item-feature-file>item-features.csv</item-feature-file>
+	</features>
+	
+	<!-- SPLITTER SECTION -->
+	<splitter>
+		<model count="5">kcv</model>
+		<dim>userfixed</dim>
+		<ratio>0.8</ratio>
+		<save>true</save>
+	</splitter>
+	
+	<!-- ALGORITHM SECTION -->
+	<!-- Using biased matrix factorization for demonstration purposes. -->
+	<alg>
+		<class>nmf</class>
+		<learn-rate>0.01</learn-rate>
+		<learn-rate-max>0.01</learn-rate-max>
+		<learn-rate-decay>1.0</learn-rate-decay>
+		<bold-driver>false</bold-driver>
+		<iterator-max>10</iterator-max>
+		<user-reg>0.01</user-reg>
+		<item-reg>0.01</item-reg>
+		<bias-reg>0.01</bias-reg>
+		<num-factors>
+			<value>10</value>
+			<value>20</value>
+		</num-factors>
+	</alg> 
+
+	<!-- METRICS SECTION -->
+	<metric>
+		<ranking>true</ranking>
+		<list-size>10</list-size>
+		<class>net.librec.eval.ranking.StatisticalParityEvaluator,net.librec.eval.ranking.DiscountedProportionalPFairnessEvaluator,precision,recall</class>
+		<!-- We need to figure out the protected feature part -->
+		<!-- <protected-feature>new</protected-feature> -->
+	</metric>
+
+	<!-- RERANK SECTION -->
+	<rerank action="no-parse">
+		<script lang="python3" src="system">
+			<script-name>far-rerank.py</script-name>
+			<param name="max_len">10</param>
+			<param name="lambda">0.4</param>
+			<param name="binary">False</param>
+		</script>
+	</rerank> 
+	
+	<!-- POST-PROCESSING SECTION -->
+	<post action='no-parse'>
+		<script lang="python3" src="system">
+			<script-name>result-graphics.py</script-name>
+			<param name="browser">True</param>
+		</script>
+	</post> 
+</librec-auto>
