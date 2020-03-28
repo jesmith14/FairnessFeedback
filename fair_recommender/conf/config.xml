@@ -22,7 +22,7 @@
 	<!-- FEATURES SECTION -->
 	<features>
 		<appender-class>net.librec.data.convertor.appender.ItemFeatureAppender</appender-class>
-		<item-feature-file>item-features.csv</item-feature-file>
+		<item-feature-file>item-features-fixed.csv</item-feature-file>
 	</features>
 	
 	<!-- SPLITTER SECTION -->
@@ -57,7 +57,7 @@
 		<list-size>10</list-size>
 		<class>net.librec.eval.ranking.StatisticalParityEvaluator,net.librec.eval.ranking.DiscountedProportionalPFairnessEvaluator,precision,recall</class>
 		<!-- We need to figure out the protected feature part -->
-		<!-- <protected-feature>new</protected-feature> -->
+		<protected-feature>protected</protected-feature>
 	</metric>
 
 	<!-- RERANK SECTION -->
