@@ -9,7 +9,7 @@ cd FairnessFeedback
 `python -m librec_auto run base_recommender`
 
 ### How to run the fair recommender:
-(fixing the bugs with this right now)
+(careful, this will take 10-20 mins to run as of now)
 
 `python -m librec_auto run fair_recommender`
 
