@@ -1,4 +1,4 @@
-# How To Run This
+# How To Run The Experiments
 ```
 pip install "librec-auto==0.1.2"
 git clone https://github.com/jesmith14/FairnessFeedback.git
