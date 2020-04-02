@@ -27,8 +27,8 @@
 	
 	<!-- SPLITTER SECTION -->
 	<splitter>
-		<model count="5">kcv</model>
-		<dim>userfixed</dim>
+		<model count="1">kcv</model>
+		<dim>ratio</dim>
 		<ratio>0.8</ratio>
 		<save>true</save>
 	</splitter>
