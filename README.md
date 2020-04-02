@@ -1,4 +1,4 @@
-# How To Run This
+# How To Run The Experiments
 ```
 pip install "librec-auto==0.1.2"
 git clone https://github.com/jesmith14/FairnessFeedback.git
@@ -9,7 +9,7 @@ cd FairnessFeedback
 `python -m librec_auto run base_recommender`
 
 ### How to run the fair recommender:
-(fixing the bugs with this right now)
+(careful, this will take 10-20 mins to run as of now)
 
 `python -m librec_auto run fair_recommender`
 
