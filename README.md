@@ -1,17 +1,21 @@
-# How To Run The Experiments
+# How To Run The Experiment
 ```
 pip install "librec-auto==0.1.2"
 git clone https://github.com/jesmith14/FairnessFeedback.git
 cd FairnessFeedback
 ```
 
-### How to run the base recommender:
-`python -m librec_auto run base_recommender`
-
 ### How to run the fair recommender:
-(careful, this will take 10-20 mins to run as of now)
+(this might take around 5 mins to run)
 
 `python -m librec_auto run fair_recommender`
+
+`python -m librec_auto eval fair_recommender`
+
+The second step is necessary to get the evaluation result for the html page from the re-ranked results, this will override the result pngs of the base recommender as of now, we're working to fix this. The base recommender results are in the "original" folder, the re-ranker are in the "results" folder
+
+### How to run the base recommender alone (this is ran automatically with the fair recommender):
+`python -m librec_auto run base_recommender`
 
 
 
