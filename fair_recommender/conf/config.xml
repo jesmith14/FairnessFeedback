@@ -28,6 +28,7 @@
 	<!-- SPLITTER SECTION -->
 	<splitter>
 		<model count="1">kcv</model>
+		<!-- <model>ratio</model> -->
 		<dim>ratio</dim>
 		<ratio>0.8</ratio>
 		<save>true</save>
