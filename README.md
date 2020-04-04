@@ -1,7 +1,9 @@
 # How To Run The Experiment
 ```
-pip install "librec-auto==0.1.2"
+python3 -m venv {folder_name}
+cd {folder_name}
 git clone https://github.com/jesmith14/FairnessFeedback.git
+pip install -r requirements.txt
 cd FairnessFeedback
 ```
 
@@ -17,7 +19,12 @@ The second step is necessary to get the evaluation result for the html page from
 ### How to run the base recommender alone (this is ran automatically with the fair recommender):
 `python -m librec_auto run base_recommender`
 
+### How to run the simulation:
+`python run_simulation.py -i 5 -r base`
+`python run_simulation.py -i 5 -r fair`
 
+For help
+`python run_simulation.py -h`
 
 Code modified from [librec-auto-tutorial](https://github.com/that-recsys-lab/librec-auto-tutorial)
 For extra guidance: [tutorial handout](https://docs.google.com/document/d/1ybazjee50e41pVwoN4CrEuRvcKfmDwQ-ZiGLrwmEUcM/edit?usp=sharing)

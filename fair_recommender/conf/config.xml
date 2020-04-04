@@ -27,7 +27,7 @@
 	
 	<!-- SPLITTER SECTION -->
 	<splitter>
-		<model count="1">kcv</model>
+		<model count="2">kcv</model>
 		<!-- <model>ratio</model> -->
 		<dim>ratio</dim>
 		<ratio>0.8</ratio>
@@ -75,7 +75,7 @@
 	<post action='no-parse'>
 		<script lang="python3" src="system">
 			<script-name>result-graphics.py</script-name>
-			<param name="browser">True</param>
+			<param name="browser">False</param>
 		</script>
 	</post> 
 </librec-auto>

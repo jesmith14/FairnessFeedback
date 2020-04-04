@@ -1,0 +1,11 @@
+cycler==0.10.0
+kiwisolver==1.1.0
+librec-auto==0.1.2
+matplotlib==3.2.1
+numpy==1.18.2
+pandas==1.0.3
+pathlib2==2.3.5
+pyparsing==2.4.6
+python-dateutil==2.8.1
+pytz==2019.3
+six==1.14.0

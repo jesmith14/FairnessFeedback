@@ -16,12 +16,12 @@
 	<!-- DATA SECTION -->
 	<data>
 		<format>UIR</format>
-		<data-file format="text">ratings.csv</data-file>
+		<data-file format="text">ratings_dup.csv</data-file>
 	</data>
 	
 	<!-- SPLITTER SECTION -->
 	<splitter>
-		<model count="5">kcv</model>
+		<model count="2">kcv</model>
 		<dim>userfixed</dim>
 		<ratio>0.8</ratio>
 		<save>true</save>
@@ -56,7 +56,7 @@
 	<post action='no-parse'>
 		<script lang="python3" src="system">
 			<script-name>result-graphics.py</script-name>
-			<param name="browser">True</param>
+			<param name="browser">False</param>
 		</script>
 	</post> 
 </librec-auto>
