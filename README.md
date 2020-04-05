@@ -21,6 +21,7 @@ The second step is necessary to get the evaluation result for the html page from
 
 ### How to run the simulation:
 `python run_simulation.py -i 5 -r base`
+
 `python run_simulation.py -i 5 -r fair`
 
 For help
