@@ -1,0 +1,12 @@
+# Virtualenv
+# credit to https://github.com/github/gitignore/blob/master/Global/VirtualEnv.gitignore
+# note I did not exclude the scripts folder because I created one with that name, we should be aware this could become a problem later I guess?
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+pyvenv.cfg
+.venv
+pip-selfcheck.json

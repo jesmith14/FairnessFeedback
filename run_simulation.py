@@ -20,11 +20,13 @@ def main():
     rec_type = args.r
 
     # set paths needed
-    # TODO: need to take care of exp00000 vs exp00001
+    # [AZ] For now we will just go with exp00001
     root_dir = os.getcwd()
     data_file = f"{root_dir}/{rec_type}_recommender/data/ratings.csv"
     dup_file = f"{root_dir}/{rec_type}_recommender/data/ratings_dup.csv"
-    result_path = f"{root_dir}/{rec_type}_recommender/exp00000/result"
+    result_path = f"{root_dir}/{rec_type}_recommender/exp00001/result"
+    scripts_path = f"{root_dir}/scripts"
+    log_path = f"{root_dir}/{rec_type}_recommender/exp00001/log"
 
     # delete the existing duplicate ratings file if exists
     if os.path.exists(data_file):
@@ -43,8 +45,12 @@ def main():
         # training run
         os.system(f"python -m librec_auto run {rec_type}_recommender -q")
 
+        os.system(f"python3 scripts/extract_log_info.py {log_path} librec.log simulation_log_data.csv {itr} 1")
+        
         # eval run
         os.system(f"python -m librec_auto eval {rec_type}_recommender -q")
+
+        os.system(f"python3 scripts/extract_log_info.py {log_path} librec.log simulation_log_data_reranked.csv {itr} 1")
 
         # "files" include [out-1, out-2, .....]
         # TODO: figure out a way to use all out-*.txt files, if possible
