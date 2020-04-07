@@ -41,12 +41,18 @@ def main():
 
     itr = 0
     while itr < sim_itrs:
+
+        print(f"***********************Running simulation {itr+1}***********************")
+
+        print("----------------------Train Run----------------------")
         
         # training run
         os.system(f"python -m librec_auto run {rec_type}_recommender -q")
 
         os.system(f"python3 scripts/extract_log_info.py {log_path} librec.log simulation_log_data.csv {itr} 1")
         
+        print("----------------------Eval Run----------------------")
+
         # eval run
         os.system(f"python -m librec_auto eval {rec_type}_recommender -q")
 
