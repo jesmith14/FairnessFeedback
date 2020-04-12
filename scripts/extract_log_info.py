@@ -7,6 +7,7 @@ log_filename = ''#'librec.log'
 out_filename = '' #'simulation_log_data.csv'
 simulation_number = '' #-1
 out_location = f"{os.getcwd()}/logs/"
+float_format = '{0:.10f}'
 # need to write code to populate this list
 attributes = ['SimulationNumber', 'DiscountedProportionalPFairnessEvaluator','RecallEvaluator', 'StatisticalParityEvaluator','PrecisionEvaluator']
 average_text = "Average Evaluation Result of Cross Validation"
@@ -54,15 +55,18 @@ def read_log() :
                 for exp in attributes[1:] :
                     if exp in line :
                         lines.append(line)
-                        new_row[exp] = line[(line.index(exp)+len(exp)+4):len(line)-1] #index of name + length + 4 for ' is '
+                        input_str = line[(line.index(exp)+len(exp)+4):len(line)-1] #index of name + length + 4 for ' is '
+                        new_row[exp] = float_format.format(float(input_str))
     return new_row
 
 def write(new_row) :
     # writing to output file
+    print("type" + str(type(float(new_row['PrecisionEvaluator']))))
     with open(os.path.join(out_location, out_filename), 'a+', newline='') as out_file :
         print("Writing fields to file at" + os.path.join(out_location, out_filename))
         print(new_row)
         print(attributes)
+
         out_file_writer = csv.DictWriter(out_file, fieldnames=attributes)
         out_file_writer.writerow(new_row)
         out_file.close()
