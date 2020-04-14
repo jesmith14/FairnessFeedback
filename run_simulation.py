@@ -78,13 +78,12 @@ def main():
         for entry in data:
             if entry:
                 user, item, rank = entry.split(",")
-                if user not in user_dict:
-                    user_dict[user] = [(int(item), float(rank))]
+                if (user,item) not in user_dict:
+                    user_dict[(user,item)] = [float(rank)]
                 else:
-                    user_dict[user].append((int(item), float(rank)))
-
-        sample_users = random.sample(user_dict.keys(), 10)
-
+                    user_dict[(user,item)].append(float(rank))
+                    
+        sample_tuple = random.choices(list(user_dict), k=5500)
         ratings = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]
         
         # random weights assigned to the ratings
@@ -95,21 +94,13 @@ def main():
 
         # write the new ratings into the duplicate ratings.csv for next round of simulation
         with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
-            for user in sample_users:
-                
-                # choose the highest ranked.
-                # item = 0
-                
-                # choose random item for different users.
-                # item_number: index of the item for a particular user in the user_dict
-                item_number = random.choice(range(10))
+            for entry in sample_tuple:
                 
                 # choose rating based on an existing probability distribution
                 rating = random.choices(ratings, weights=weights, k=1)
-                # print(f"User: {user} \tItem: {user_dict[user][item_number][0]} \tRating: {rating[0]}")
                 
-                # insert the (user, item_number, rating) tuple into the ratings.csv
-                f.write(f"{user},{user_dict[user][0][0]},{rating[0]}")
+                # insert the (user, item, rating) tuple into the ratings.csv
+                f.write(f"{entry[0]},{entry[1]},{rating[0]}")
                 f.write("\n")
 
         itr += 1
