@@ -16,7 +16,7 @@
 	<!-- DATA SECTION -->
 	<data>
 		<format>UIR</format>
-		<data-file format="text">ratings.csv</data-file>
+		<data-file format="text">ratings_dup.csv</data-file>
 	</data>
 
 	<!-- FEATURES SECTION -->

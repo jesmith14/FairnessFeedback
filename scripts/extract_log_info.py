@@ -7,7 +7,7 @@ log_filename = ''#'librec.log'
 out_filename = '' #'simulation_log_data.csv'
 simulation_number = '' #-1
 out_location = f"{os.getcwd()}/logs/"
-float_format = '{0:.10f}'
+float_format = '{0:.17f}'
 # need to write code to populate this list
 attributes = ['SimulationNumber', 'DiscountedProportionalPFairnessEvaluator','RecallEvaluator', 'StatisticalParityEvaluator','PrecisionEvaluator']
 average_text = "Average Evaluation Result of Cross Validation"

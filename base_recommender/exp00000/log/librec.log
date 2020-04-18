@@ -1,157 +1,45 @@
-20/04/01 21:12:39 INFO TextDataConvertor: Dataset: base_recommender/data/ratings.csv
-20/04/01 21:12:39 INFO TextDataConvertor: All dataset files [base_recommender/data/ratings.csv]
-20/04/01 21:12:39 INFO TextDataConvertor: All dataset files size 8678476
-20/04/01 21:12:39 INFO TextDataConvertor: Now loading dataset file ratings
-20/04/01 21:12:41 INFO TextDataModel: Transform data to Convertor successfully!
-20/04/01 21:12:42 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:12:42 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:12:42 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:12:42 INFO RecommenderJob: SplitCMD: START - Splitting training and testing.
-20/04/01 21:12:42 INFO RecommenderJob: SplitCMD: Splitting training and testing with 0.8% ratio on fold 1.
-20/04/01 21:12:42 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:12:42 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:12:42 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:12:43 INFO RecommenderJob: SplitCmd: COMPLETE
-20/04/01 21:12:43 INFO RecommenderJob: SplitCMD: Splitting training and testing with 0.8% ratio on fold 2.
-20/04/01 21:12:43 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:12:43 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:12:43 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:12:43 INFO RecommenderJob: SplitCmd: COMPLETE
-20/04/01 21:12:43 INFO RecommenderJob: SplitCMD: Splitting training and testing with 0.8% ratio on fold 3.
-20/04/01 21:12:44 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:12:44 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:12:44 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:12:44 INFO RecommenderJob: SplitCmd: COMPLETE
-20/04/01 21:12:44 INFO RecommenderJob: SplitCMD: Splitting training and testing with 0.8% ratio on fold 4.
-20/04/01 21:12:44 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:12:44 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:12:44 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:12:45 INFO RecommenderJob: SplitCmd: COMPLETE
-20/04/01 21:12:45 INFO RecommenderJob: SplitCMD: Splitting training and testing with 0.8% ratio on fold 5.
-20/04/01 21:12:45 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:12:45 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:12:45 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:12:45 INFO RecommenderJob: SplitCmd: COMPLETE
-20/04/01 21:12:45 INFO RecommenderJob: ExpCMD: START - Executing recommender job on 2.
-20/04/01 21:12:45 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:12:45 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:12:45 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:12:45 INFO NMFRecommender: Job Setup completed.
-20/04/01 21:12:46 INFO NMFRecommender: NMFRecommender iter 0: loss = 193056.58757544955, delta_loss = -193056.6
-20/04/01 21:12:47 INFO NMFRecommender: NMFRecommender iter 1: loss = 180529.1439200707, delta_loss = -180529.14
-20/04/01 21:12:47 INFO NMFRecommender: NMFRecommender iter 2: loss = 175722.97661394786, delta_loss = -175722.98
-20/04/01 21:12:48 INFO NMFRecommender: NMFRecommender iter 3: loss = 171903.9274395471, delta_loss = -171903.92
-20/04/01 21:12:48 INFO NMFRecommender: NMFRecommender iter 4: loss = 168648.54057995835, delta_loss = -168648.55
-20/04/01 21:12:49 INFO NMFRecommender: NMFRecommender iter 5: loss = 165820.0941337677, delta_loss = -165820.1
-20/04/01 21:12:49 INFO NMFRecommender: NMFRecommender iter 6: loss = 163330.63218203318, delta_loss = -163330.62
-20/04/01 21:12:50 INFO NMFRecommender: NMFRecommender iter 7: loss = 161115.94704598296, delta_loss = -161115.95
-20/04/01 21:12:50 INFO NMFRecommender: NMFRecommender iter 8: loss = 159127.34997654575, delta_loss = -159127.34
-20/04/01 21:12:51 INFO NMFRecommender: NMFRecommender iter 9: loss = 157327.08713852233, delta_loss = -157327.1
-20/04/01 21:12:52 INFO NMFRecommender: NMFRecommender iter 10: loss = 155685.4039278205, delta_loss = -155685.4
-20/04/01 21:12:52 INFO NMFRecommender: Job Train completed.
-20/04/01 21:12:57 INFO NMFRecommender: Job End.
-20/04/01 21:12:57 INFO RecommenderJob: ExpCMD: COMPLETE
-20/04/01 21:12:57 INFO RecommenderJob: EvalCMD: START
-20/04/01 21:12:57 INFO RecommenderJob: Evaluator info:PrecisionEvaluator is 3.5778175313059034E-5
-20/04/01 21:12:57 INFO RecommenderJob: Evaluator info:RecallEvaluator is 2.290881281815456E-5
-20/04/01 21:12:57 INFO RecommenderJob: Result path is base_recommender/exp00000/result/out-1.txt
-20/04/01 21:12:57 INFO RecommenderJob: EvalCMD: COMPLETE.
-20/04/01 21:12:57 INFO RecommenderJob: ExpCMD: START - Executing recommender job on 3.
-20/04/01 21:12:57 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:12:57 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:12:57 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:12:57 INFO NMFRecommender: Job Setup completed.
-20/04/01 21:12:58 INFO NMFRecommender: NMFRecommender iter 0: loss = 193639.90878296402, delta_loss = -193639.9
-20/04/01 21:12:58 INFO NMFRecommender: NMFRecommender iter 1: loss = 180883.8104267581, delta_loss = -180883.81
-20/04/01 21:12:59 INFO NMFRecommender: NMFRecommender iter 2: loss = 176036.01560123978, delta_loss = -176036.02
-20/04/01 21:12:59 INFO NMFRecommender: NMFRecommender iter 3: loss = 172175.01514999912, delta_loss = -172175.02
-20/04/01 21:13:00 INFO NMFRecommender: NMFRecommender iter 4: loss = 168883.55045234083, delta_loss = -168883.55
-20/04/01 21:13:01 INFO NMFRecommender: NMFRecommender iter 5: loss = 166025.38517016248, delta_loss = -166025.39
-20/04/01 21:13:01 INFO NMFRecommender: NMFRecommender iter 6: loss = 163511.3556515069, delta_loss = -163511.36
-20/04/01 21:13:02 INFO NMFRecommender: NMFRecommender iter 7: loss = 161276.07776103893, delta_loss = -161276.08
-20/04/01 21:13:02 INFO NMFRecommender: NMFRecommender iter 8: loss = 159270.0060454202, delta_loss = -159270.0
-20/04/01 21:13:03 INFO NMFRecommender: NMFRecommender iter 9: loss = 157454.82404860566, delta_loss = -157454.83
-20/04/01 21:13:03 INFO NMFRecommender: NMFRecommender iter 10: loss = 155800.42008499298, delta_loss = -155800.42
-20/04/01 21:13:03 INFO NMFRecommender: Job Train completed.
-20/04/01 21:13:08 INFO NMFRecommender: Job End.
-20/04/01 21:13:08 INFO RecommenderJob: ExpCMD: COMPLETE
-20/04/01 21:13:08 INFO RecommenderJob: EvalCMD: START
-20/04/01 21:13:08 INFO RecommenderJob: Evaluator info:PrecisionEvaluator is 8.955758552749418E-5
-20/04/01 21:13:08 INFO RecommenderJob: Evaluator info:RecallEvaluator is 2.0787787021169348E-5
-20/04/01 21:13:08 INFO RecommenderJob: Result path is base_recommender/exp00000/result/out-2.txt
-20/04/01 21:13:08 INFO RecommenderJob: EvalCMD: COMPLETE.
-20/04/01 21:13:08 INFO RecommenderJob: ExpCMD: START - Executing recommender job on 4.
-20/04/01 21:13:08 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:13:08 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:13:08 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:13:08 INFO NMFRecommender: Job Setup completed.
-20/04/01 21:13:09 INFO NMFRecommender: NMFRecommender iter 0: loss = 192402.0312875806, delta_loss = -192402.03
-20/04/01 21:13:10 INFO NMFRecommender: NMFRecommender iter 1: loss = 179994.30002928083, delta_loss = -179994.3
-20/04/01 21:13:10 INFO NMFRecommender: NMFRecommender iter 2: loss = 175176.2857756383, delta_loss = -175176.28
-20/04/01 21:13:11 INFO NMFRecommender: NMFRecommender iter 3: loss = 171339.23166433527, delta_loss = -171339.23
-20/04/01 21:13:11 INFO NMFRecommender: NMFRecommender iter 4: loss = 168066.26256334325, delta_loss = -168066.27
-20/04/01 21:13:12 INFO NMFRecommender: NMFRecommender iter 5: loss = 165221.1712478321, delta_loss = -165221.17
-20/04/01 21:13:12 INFO NMFRecommender: NMFRecommender iter 6: loss = 162715.63763286528, delta_loss = -162715.64
-20/04/01 21:13:13 INFO NMFRecommender: NMFRecommender iter 7: loss = 160485.102763472, delta_loss = -160485.11
-20/04/01 21:13:13 INFO NMFRecommender: NMFRecommender iter 8: loss = 158480.6636987515, delta_loss = -158480.66
-20/04/01 21:13:14 INFO NMFRecommender: NMFRecommender iter 9: loss = 156664.47751217766, delta_loss = -156664.48
-20/04/01 21:13:14 INFO NMFRecommender: NMFRecommender iter 10: loss = 155006.79812819057, delta_loss = -155006.8
-20/04/01 21:13:14 INFO NMFRecommender: Job Train completed.
-20/04/01 21:13:19 INFO NMFRecommender: Job End.
-20/04/01 21:13:19 INFO RecommenderJob: ExpCMD: COMPLETE
-20/04/01 21:13:19 INFO RecommenderJob: EvalCMD: START
-20/04/01 21:13:19 INFO RecommenderJob: Evaluator info:PrecisionEvaluator is 0.0
-20/04/01 21:13:19 INFO RecommenderJob: Evaluator info:RecallEvaluator is 0.0
-20/04/01 21:13:19 INFO RecommenderJob: Result path is base_recommender/exp00000/result/out-3.txt
-20/04/01 21:13:19 INFO RecommenderJob: EvalCMD: COMPLETE.
-20/04/01 21:13:19 INFO RecommenderJob: ExpCMD: START - Executing recommender job on 5.
-20/04/01 21:13:19 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:13:19 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:13:19 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:13:19 INFO NMFRecommender: Job Setup completed.
-20/04/01 21:13:20 INFO NMFRecommender: NMFRecommender iter 0: loss = 192805.44912631085, delta_loss = -192805.45
-20/04/01 21:13:21 INFO NMFRecommender: NMFRecommender iter 1: loss = 180127.99338515053, delta_loss = -180128.0
-20/04/01 21:13:21 INFO NMFRecommender: NMFRecommender iter 2: loss = 175365.6646761372, delta_loss = -175365.67
-20/04/01 21:13:22 INFO NMFRecommender: NMFRecommender iter 3: loss = 171600.67588889666, delta_loss = -171600.67
-20/04/01 21:13:22 INFO NMFRecommender: NMFRecommender iter 4: loss = 168390.88917765292, delta_loss = -168390.89
-20/04/01 21:13:23 INFO NMFRecommender: NMFRecommender iter 5: loss = 165598.08873255196, delta_loss = -165598.1
-20/04/01 21:13:23 INFO NMFRecommender: NMFRecommender iter 6: loss = 163135.6916252141, delta_loss = -163135.69
-20/04/01 21:13:24 INFO NMFRecommender: NMFRecommender iter 7: loss = 160941.1430964122, delta_loss = -160941.14
-20/04/01 21:13:24 INFO NMFRecommender: NMFRecommender iter 8: loss = 158967.2100426038, delta_loss = -158967.2
-20/04/01 21:13:25 INFO NMFRecommender: NMFRecommender iter 9: loss = 157177.36231296737, delta_loss = -157177.36
-20/04/01 21:13:25 INFO NMFRecommender: NMFRecommender iter 10: loss = 155542.86455214617, delta_loss = -155542.86
-20/04/01 21:13:25 INFO NMFRecommender: Job Train completed.
-20/04/01 21:13:30 INFO NMFRecommender: Job End.
-20/04/01 21:13:30 INFO RecommenderJob: ExpCMD: COMPLETE
-20/04/01 21:13:30 INFO RecommenderJob: EvalCMD: START
-20/04/01 21:13:30 INFO RecommenderJob: Evaluator info:PrecisionEvaluator is 1.7908309455587395E-5
-20/04/01 21:13:30 INFO RecommenderJob: Evaluator info:RecallEvaluator is 3.532210937985679E-7
-20/04/01 21:13:30 INFO RecommenderJob: Result path is base_recommender/exp00000/result/out-4.txt
-20/04/01 21:13:30 INFO RecommenderJob: EvalCMD: COMPLETE.
-20/04/01 21:13:30 INFO RecommenderJob: ExpCMD: START - Executing recommender job on 6.
-20/04/01 21:13:30 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/01 21:13:30 INFO TextDataModel: Data size of training is 447256
-20/04/01 21:13:30 INFO TextDataModel: Data size of testing is 111814
-20/04/01 21:13:30 INFO NMFRecommender: Job Setup completed.
-20/04/01 21:13:31 INFO NMFRecommender: NMFRecommender iter 0: loss = 192765.5166765716, delta_loss = -192765.52
-20/04/01 21:13:32 INFO NMFRecommender: NMFRecommender iter 1: loss = 180146.71173945031, delta_loss = -180146.72
-20/04/01 21:13:32 INFO NMFRecommender: NMFRecommender iter 2: loss = 175341.58830924713, delta_loss = -175341.6
-20/04/01 21:13:33 INFO NMFRecommender: NMFRecommender iter 3: loss = 171507.33063347338, delta_loss = -171507.33
-20/04/01 21:13:33 INFO NMFRecommender: NMFRecommender iter 4: loss = 168239.83684631894, delta_loss = -168239.84
-20/04/01 21:13:34 INFO NMFRecommender: NMFRecommender iter 5: loss = 165403.38770787182, delta_loss = -165403.39
-20/04/01 21:13:34 INFO NMFRecommender: NMFRecommender iter 6: loss = 162909.15969402908, delta_loss = -162909.16
-20/04/01 21:13:35 INFO NMFRecommender: NMFRecommender iter 7: loss = 160692.0984859649, delta_loss = -160692.1
-20/04/01 21:13:35 INFO NMFRecommender: NMFRecommender iter 8: loss = 158702.89730073448, delta_loss = -158702.89
-20/04/01 21:13:36 INFO NMFRecommender: NMFRecommender iter 9: loss = 156903.37802499824, delta_loss = -156903.38
-20/04/01 21:13:36 INFO NMFRecommender: NMFRecommender iter 10: loss = 155263.48273753253, delta_loss = -155263.48
-20/04/01 21:13:36 INFO NMFRecommender: Job Train completed.
-20/04/01 21:13:41 INFO NMFRecommender: Job End.
-20/04/01 21:13:41 INFO RecommenderJob: ExpCMD: COMPLETE
-20/04/01 21:13:41 INFO RecommenderJob: EvalCMD: START
-20/04/01 21:13:41 INFO RecommenderJob: Evaluator info:PrecisionEvaluator is 8.947745168217609E-5
-20/04/01 21:13:41 INFO RecommenderJob: Evaluator info:RecallEvaluator is 2.5859408775551783E-5
-20/04/01 21:13:41 INFO RecommenderJob: Result path is base_recommender/exp00000/result/out-5.txt
-20/04/01 21:13:41 INFO RecommenderJob: EvalCMD: COMPLETE.
-20/04/01 21:13:41 INFO RecommenderJob: Average Evaluation Result of Cross Validation:
-20/04/01 21:13:41 INFO RecommenderJob: Evaluator value:RecallEvaluator is 1.3981845941734851E-5
-20/04/01 21:13:41 INFO RecommenderJob: Evaluator value:PrecisionEvaluator is 4.654430439566334E-5
+20/04/17 20:02:49 INFO TextDataConvertor: Dataset: ...se_recommender/data/ratings_dup.csv
+20/04/17 20:02:50 INFO TextDataConvertor: All dataset files [base_recommender/data/ratings_dup.csv]
+20/04/17 20:02:50 INFO TextDataConvertor: All dataset files size 8678476
+20/04/17 20:02:50 INFO TextDataConvertor: Now loading dataset file ratings_dup
+20/04/17 20:02:51 INFO TextDataModel: Transform data to Convertor successfully!
+20/04/17 20:02:52 INFO TextDataModel: Split data to train Set and test Set successfully!
+20/04/17 20:02:52 INFO TextDataModel: Data size of training is 279535
+20/04/17 20:02:52 INFO TextDataModel: Data size of testing is 279535
+20/04/17 20:02:52 INFO TextDataModel: Split data to train Set and test Set successfully!
+20/04/17 20:02:52 INFO TextDataModel: Data size of training is 279535
+20/04/17 20:02:52 INFO TextDataModel: Data size of testing is 279535
+20/04/17 20:02:52 INFO OracleAlgo: Job Setup completed.
+** Training model in OracleAlgo **
+20/04/17 20:02:52 INFO TextDataConvertor: Dataset: ...commender/exp00000/result/out-1.txt
+java.nio.file.NoSuchFileException: base_recommender/exp00000/result/out-1.txt
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixFileAttributeViews$Basic.readAttributes(UnixFileAttributeViews.java:55)
+	at sun.nio.fs.UnixFileSystemProvider.readAttributes(UnixFileSystemProvider.java:144)
+	at java.nio.file.Files.readAttributes(Files.java:1737)
+	at java.nio.file.FileTreeWalker.getAttributes(FileTreeWalker.java:219)
+	at java.nio.file.FileTreeWalker.visit(FileTreeWalker.java:276)
+	at java.nio.file.FileTreeWalker.walk(FileTreeWalker.java:322)
+	at java.nio.file.Files.walkFileTree(Files.java:2662)
+	at java.nio.file.Files.walkFileTree(Files.java:2742)
+	at net.that_recsys_lab.auto.AutoDataAppender.readDataAuto(AutoDataAppender.java:140)
+	at net.that_recsys_lab.auto.AutoDataAppender.processData(AutoDataAppender.java:99)
+	at net.that_recsys_lab.auto.OracleAlgo.LoadResults(OracleAlgo.java:145)
+	at net.that_recsys_lab.auto.OracleAlgo.trainModel(OracleAlgo.java:35)
+	at net.librec.recommender.AbstractRecommender.recommend(AbstractRecommender.java:221)
+	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.recalculateMetrics(ReRunEvalCmd.java:68)
+	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.executeEval(ReRunEvalCmd.java:51)
+	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.execute(ReRunEvalCmd.java:29)
+	at net.that_recsys_lab.auto.AutoRecommenderJob.runJob(AutoRecommenderJob.java:146)
+	at net.that_recsys_lab.auto.SingleJobRunner.main(SingleJobRunner.java:27)
+Exception in thread "main" java.lang.NullPointerException
+	at net.that_recsys_lab.auto.OracleAlgo.LoadResults(OracleAlgo.java:150)
+	at net.that_recsys_lab.auto.OracleAlgo.trainModel(OracleAlgo.java:35)
+	at net.librec.recommender.AbstractRecommender.recommend(AbstractRecommender.java:221)
+	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.recalculateMetrics(ReRunEvalCmd.java:68)
+	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.executeEval(ReRunEvalCmd.java:51)
+	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.execute(ReRunEvalCmd.java:29)
+	at net.that_recsys_lab.auto.AutoRecommenderJob.runJob(AutoRecommenderJob.java:146)
+	at net.that_recsys_lab.auto.SingleJobRunner.main(SingleJobRunner.java:27)
