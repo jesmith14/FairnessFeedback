@@ -18,6 +18,12 @@
 		<format>UIR</format>
 		<data-file format="text">ratings_dup.csv</data-file>
 	</data>
+
+	<!-- FEATURES SECTION -->
+	<features>
+		<appender-class>net.librec.data.convertor.appender.ItemFeatureAppender</appender-class>
+		<item-feature-file>item-features-fixed.csv</item-feature-file>
+	</features>
 	
 	<!-- SPLITTER SECTION -->
 	<splitter>

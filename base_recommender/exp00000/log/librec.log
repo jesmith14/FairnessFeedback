@@ -1,45 +1,52 @@
-20/04/17 20:02:49 INFO TextDataConvertor: Dataset: ...se_recommender/data/ratings_dup.csv
-20/04/17 20:02:50 INFO TextDataConvertor: All dataset files [base_recommender/data/ratings_dup.csv]
-20/04/17 20:02:50 INFO TextDataConvertor: All dataset files size 8678476
-20/04/17 20:02:50 INFO TextDataConvertor: Now loading dataset file ratings_dup
-20/04/17 20:02:51 INFO TextDataModel: Transform data to Convertor successfully!
-20/04/17 20:02:52 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/17 20:02:52 INFO TextDataModel: Data size of training is 279535
-20/04/17 20:02:52 INFO TextDataModel: Data size of testing is 279535
-20/04/17 20:02:52 INFO TextDataModel: Split data to train Set and test Set successfully!
-20/04/17 20:02:52 INFO TextDataModel: Data size of training is 279535
-20/04/17 20:02:52 INFO TextDataModel: Data size of testing is 279535
-20/04/17 20:02:52 INFO OracleAlgo: Job Setup completed.
+20/04/19 12:01:31 INFO TextDataConvertor: Dataset: ...se_recommender/data/ratings_dup.csv
+20/04/19 12:01:31 INFO TextDataConvertor: All dataset files [base_recommender/data/ratings_dup.csv]
+20/04/19 12:01:31 INFO TextDataConvertor: All dataset files size 8860573
+20/04/19 12:01:31 INFO TextDataConvertor: Now loading dataset file ratings_dup
+20/04/19 12:01:33 INFO TextDataModel: Transform data to Convertor successfully!
+20/04/19 12:01:34 INFO TextDataModel: Split data to train Set and test Set successfully!
+20/04/19 12:01:34 INFO TextDataModel: Data size of training is 284777
+20/04/19 12:01:34 INFO TextDataModel: Data size of testing is 284778
+20/04/19 12:01:34 INFO TextDataModel: Feature appender loaded successfully!
+20/04/19 12:01:34 INFO TextDataModel: Split data to train Set and test Set successfully!
+20/04/19 12:01:34 INFO TextDataModel: Data size of training is 284777
+20/04/19 12:01:34 INFO TextDataModel: Data size of testing is 284778
+20/04/19 12:01:34 INFO OracleAlgo: Job Setup completed.
 ** Training model in OracleAlgo **
-20/04/17 20:02:52 INFO TextDataConvertor: Dataset: ...commender/exp00000/result/out-1.txt
-java.nio.file.NoSuchFileException: base_recommender/exp00000/result/out-1.txt
-	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
-	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
-	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
-	at sun.nio.fs.UnixFileAttributeViews$Basic.readAttributes(UnixFileAttributeViews.java:55)
-	at sun.nio.fs.UnixFileSystemProvider.readAttributes(UnixFileSystemProvider.java:144)
-	at java.nio.file.Files.readAttributes(Files.java:1737)
-	at java.nio.file.FileTreeWalker.getAttributes(FileTreeWalker.java:219)
-	at java.nio.file.FileTreeWalker.visit(FileTreeWalker.java:276)
-	at java.nio.file.FileTreeWalker.walk(FileTreeWalker.java:322)
-	at java.nio.file.Files.walkFileTree(Files.java:2662)
-	at java.nio.file.Files.walkFileTree(Files.java:2742)
-	at net.that_recsys_lab.auto.AutoDataAppender.readDataAuto(AutoDataAppender.java:140)
-	at net.that_recsys_lab.auto.AutoDataAppender.processData(AutoDataAppender.java:99)
-	at net.that_recsys_lab.auto.OracleAlgo.LoadResults(OracleAlgo.java:145)
-	at net.that_recsys_lab.auto.OracleAlgo.trainModel(OracleAlgo.java:35)
-	at net.librec.recommender.AbstractRecommender.recommend(AbstractRecommender.java:221)
-	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.recalculateMetrics(ReRunEvalCmd.java:68)
-	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.executeEval(ReRunEvalCmd.java:51)
-	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.execute(ReRunEvalCmd.java:29)
-	at net.that_recsys_lab.auto.AutoRecommenderJob.runJob(AutoRecommenderJob.java:146)
-	at net.that_recsys_lab.auto.SingleJobRunner.main(SingleJobRunner.java:27)
-Exception in thread "main" java.lang.NullPointerException
-	at net.that_recsys_lab.auto.OracleAlgo.LoadResults(OracleAlgo.java:150)
-	at net.that_recsys_lab.auto.OracleAlgo.trainModel(OracleAlgo.java:35)
-	at net.librec.recommender.AbstractRecommender.recommend(AbstractRecommender.java:221)
-	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.recalculateMetrics(ReRunEvalCmd.java:68)
-	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.executeEval(ReRunEvalCmd.java:51)
-	at net.that_recsys_lab.auto.cmd.ReRunEvalCmd.execute(ReRunEvalCmd.java:29)
-	at net.that_recsys_lab.auto.AutoRecommenderJob.runJob(AutoRecommenderJob.java:146)
-	at net.that_recsys_lab.auto.SingleJobRunner.main(SingleJobRunner.java:27)
+20/04/19 12:01:34 INFO TextDataConvertor: Dataset: ...commender/exp00000/result/out-1.txt
+20/04/19 12:01:34 INFO TextDataConvertor: All dataset files [base_recommender/exp00000/result/out-1.txt]
+20/04/19 12:01:34 INFO TextDataConvertor: All dataset files size 1835948
+20/04/19 12:01:34 INFO TextDataConvertor: Now loading dataset file out-1
+20/04/19 12:01:35 INFO OracleAlgo: Job Train completed.
+20/04/19 12:01:42 INFO OracleAlgo: Job End.
+20/04/19 12:01:42 INFO RecommenderJob: Evaluator info:PrecisionEvaluator is 3.531192197746764E-4
+20/04/19 12:01:42 INFO RecommenderJob: Evaluator info:RecallEvaluator is 7.509492692194355E-5
+20/04/19 12:01:42 INFO RecommenderJob: Evaluator info:StatisticalParityEvaluator is 1.0915050414845378
+not-protected
+4.822004110616819
+protected
+4.036372859724788
+20/04/19 12:01:42 INFO RecommenderJob: Evaluator info:DiscountedProportionalPFairnessEvaluator is -2.0113924552487337
+20/04/19 12:01:42 INFO TextDataModel: Split data to train Set and test Set successfully!
+20/04/19 12:01:42 INFO TextDataModel: Data size of training is 284778
+20/04/19 12:01:42 INFO TextDataModel: Data size of testing is 284777
+20/04/19 12:01:42 INFO OracleAlgo: Job Setup completed.
+** Training model in OracleAlgo **
+20/04/19 12:01:42 INFO TextDataConvertor: Dataset: ...commender/exp00000/result/out-2.txt
+20/04/19 12:01:42 INFO TextDataConvertor: All dataset files [base_recommender/exp00000/result/out-2.txt]
+20/04/19 12:01:42 INFO TextDataConvertor: All dataset files size 1825825
+20/04/19 12:01:42 INFO TextDataConvertor: Now loading dataset file out-2
+20/04/19 12:01:43 INFO OracleAlgo: Job Train completed.
+20/04/19 12:01:49 INFO OracleAlgo: Job End.
+20/04/19 12:01:49 INFO RecommenderJob: Evaluator info:PrecisionEvaluator is 3.191132012092712E-4
+20/04/19 12:01:49 INFO RecommenderJob: Evaluator info:RecallEvaluator is 5.121000070795511E-5
+20/04/19 12:01:49 INFO RecommenderJob: Evaluator info:StatisticalParityEvaluator is 0.5277051139373559
+not-protected
+4.774365532445634
+protected
+1.7852260276385823
+20/04/19 12:01:49 INFO RecommenderJob: Evaluator info:DiscountedProportionalPFairnessEvaluator is -2.3357962023324577
+20/04/19 12:01:49 INFO RecommenderJob: Average Evaluation Result of Cross Validation:
+20/04/19 12:01:49 INFO RecommenderJob: Evaluator value:DiscountedProportionalPFairnessEvaluator is -2.1735943287905957
+20/04/19 12:01:49 INFO RecommenderJob: Evaluator value:RecallEvaluator is 6.315246381494933E-5
+20/04/19 12:01:49 INFO RecommenderJob: Evaluator value:StatisticalParityEvaluator is 0.8096050777109468
+20/04/19 12:01:49 INFO RecommenderJob: Evaluator value:PrecisionEvaluator is 3.361162104919738E-4
