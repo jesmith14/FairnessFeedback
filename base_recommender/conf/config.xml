@@ -22,7 +22,7 @@
 	<!-- FEATURES SECTION -->
 	<features>
 		<appender-class>net.librec.data.convertor.appender.ItemFeatureAppender</appender-class>
-		<item-feature-file>item-features-fixed.csv</item-feature-file>
+		<item-feature-file>item-features-fixed-2.csv</item-feature-file>
 	</features>
 	
 	<!-- SPLITTER SECTION -->
