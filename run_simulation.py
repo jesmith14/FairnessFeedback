@@ -1,8 +1,10 @@
 import sys
 import os
-import random
+import collections
+import numpy as np
 import time
 import argparse
+from scripts import utils
 
 def main():
     parser = argparse.ArgumentParser(description='Recommendation simulator',
@@ -10,14 +12,20 @@ def main():
 
     # Fundamental options
     parser.add_argument('-i', type=int, default=2,
-                        help='Simulation rounds for [fair|base] recommender')
+                        help='Simulation rounds for running the recommender')
     parser.add_argument('-r', type=str, default='base',
                         help='Type of recommender [fair|base]')
+    
+    # "best" chooses the top ranked item for a user
+    # "explore" uses softmax of recommended items as probability distribution for selection
+    parser.add_argument('-s', type=str, default='explore',
+                        help='Type of user selection [best|explore|random]')
 
     args = parser.parse_args()
 
     sim_itrs = args.i
     rec_type = args.r
+    sel_type = args.s
 
     # set paths needed
     # [AZ] For now we will just go with exp00001
@@ -63,7 +71,7 @@ def main():
         files = os.listdir(result_path)
 
         # choose one of the "out-*.txt" file
-        result = random.choice(files)
+        result = np.random.choice(files)
 
         file_path = f"{result_path}/{result}"
 
@@ -71,36 +79,30 @@ def main():
             data = f.read().split("\n")
         f.close()
 
+        user_dict = collections.OrderedDict()
 
-        user_dict = {}
-
-        # create a dictionary of {user: [(item0, rank), (item1, rank), (item2, rank), ...]}
+        # create a dictionary of 
+        # {user1: [(item0, rank), (item1, rank), (item2, rank), ...], 
+        # user2: [...], user3:[...],...}
         for entry in data:
             if entry:
-                user, item, rank = entry.split(",")
-                if (user,item) not in user_dict:
-                    user_dict[(user,item)] = [float(rank)]
+                user, item, score = entry.split(',')
+                if user not in user_dict:
+                    user_dict[user] = [(int(item), float(score))]
                 else:
-                    user_dict[(user,item)].append(float(rank))
+                    user_dict[user].append((int(item), float(score)))
                     
-        sample_tuple = random.choices(list(user_dict), k=5500)
-        ratings = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]
+        user_sample = np.random.choice(list(user_dict), 5500)
         
-        # random weights assigned to the ratings
-        # can be modified based on some scale
-        weights = [0.01, 0.03, 0.04, 0.1, 0.12, 0.18, 0.2, 0.13, 0.1, 0.07]
-
-        new_ratings = []
-
         # write the new ratings into the duplicate ratings.csv for next round of simulation
         with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
-            for entry in sample_tuple:
+            for user in user_sample:
                 
                 # choose rating based on an existing probability distribution
-                rating = random.choices(ratings, weights=weights, k=1)
+                selection, rating = utils.rate_item(user, user_dict[user], sel_type)
                 
                 # insert the (user, item, rating) tuple into the ratings.csv
-                f.write(f"{entry[0]},{entry[1]},{rating[0]}")
+                f.write(f"{user},{selection},{rating}")
                 f.write("\n")
 
         itr += 1
