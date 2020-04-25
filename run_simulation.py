@@ -15,7 +15,7 @@ def main():
                         help='Simulation rounds for running the recommender')
     parser.add_argument('-r', type=str, default='base',
                         help='Type of recommender [fair|base]')
-    
+
     # "best" chooses the top ranked item for a user
     # "explore" uses softmax of recommended items as probability distribution for selection
     parser.add_argument('-s', type=str, default='explore',
@@ -49,16 +49,16 @@ def main():
 
     itr = 0
     while itr < sim_itrs:
-
+        utils.load_ratings(dup_file)
         print(f"***********************Running simulation {itr+1}***********************")
 
         print("----------------------Train Run----------------------")
-        
+
         # training run
         os.system(f"python -m librec_auto run {rec_type}_recommender -q")
 
         os.system(f"python3 scripts/extract_log_info.py {log_path} librec.log simulation_log_data.csv {itr} 1")
-        
+
         print("----------------------Eval Run----------------------")
 
         # eval run
@@ -79,33 +79,54 @@ def main():
             data = f.read().split("\n")
         f.close()
 
-        user_dict = collections.OrderedDict()
+        cf = False
 
-        # create a dictionary of 
-        # {user1: [(item0, rank), (item1, rank), (item2, rank), ...], 
-        # user2: [...], user3:[...],...}
-        for entry in data:
-            if entry:
-                user, item, score = entry.split(',')
-                if user not in user_dict:
-                    user_dict[user] = [(int(item), float(score))]
-                else:
-                    user_dict[user].append((int(item), float(score)))
-                    
-        user_sample = np.random.choice(list(user_dict), 5500)
-        
-        # write the new ratings into the duplicate ratings.csv for next round of simulation
-        with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
-            for user in user_sample:
-                
-                # choose rating based on an existing probability distribution
-                selection, rating = utils.rate_item(user, user_dict[user], sel_type)
-                
-                # insert the (user, item, rating) tuple into the ratings.csv
-                f.write(f"{user},{selection},{rating}")
-                f.write("\n")
+        if (cf) :
+            predictions = utils.surprise_cf(dup_file)
+            print("Length of predictions: " + str(len(predictions)))
+            print("Taking 5500 random predictions.")
+            user_sample = np.random.choice(predictions, 5500)
+            with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
+                for prediction in user_sample:
+                    user = prediction.uid
+                    print(user)
+                    selection = prediction.iid
+                    rating = prediction.r_ui
+                    # r_ui(float): The true rating :math:`r_{ui}`.
+                    # est(float): The estimated rating :math:`\\hat{r}_{ui}`.
 
-        itr += 1
+                    f.write(f"{user},{selection},{rating}")
+                    f.write("\n")
+        else :
+            user_dict = collections.OrderedDict()
+
+            # create a dictionary of
+            # {user1: [(item0, rank), (item1, rank), (item2, rank), ...],
+            # user2: [...], user3:[...],...}
+            for entry in data:
+                if entry:
+                    user, item, score = entry.split(',')
+                    if user not in user_dict:
+                        user_dict[user] = [(int(item), float(score))]
+                    else:
+                        user_dict[user].append((int(item), float(score)))
+
+            user_sample = np.random.choice(list(user_dict), 5500)
+
+            # write the new ratings into the duplicate ratings.csv for next round of simulation
+            with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
+                for user in user_sample:
+
+                    # choose rating based on an existing probability distribution
+                    selection, rating = utils.rate_item(user, user_dict[user], sel_type)
+
+                    # insert the (user, item, rating) tuple into the ratings.csv
+                    f.write(f"{user},{selection},{rating}")
+                    f.write("\n")
+
+            itr += 1
+
+
 
     end_time = time.time()
 
