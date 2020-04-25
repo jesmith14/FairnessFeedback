@@ -79,54 +79,33 @@ def main():
             data = f.read().split("\n")
         f.close()
 
-        cf = False
+        user_dict = collections.OrderedDict()
 
-        if (cf) :
-            predictions = utils.surprise_cf(dup_file)
-            print("Length of predictions: " + str(len(predictions)))
-            print("Taking 5500 random predictions.")
-            user_sample = np.random.choice(predictions, 5500)
-            with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
-                for prediction in user_sample:
-                    user = prediction.uid
-                    print(user)
-                    selection = prediction.iid
-                    rating = prediction.r_ui
-                    # r_ui(float): The true rating :math:`r_{ui}`.
-                    # est(float): The estimated rating :math:`\\hat{r}_{ui}`.
+        # create a dictionary of
+        # {user1: [(item0, rank), (item1, rank), (item2, rank), ...],
+        # user2: [...], user3:[...],...}
+        for entry in data:
+            if entry:
+                user, item, score = entry.split(',')
+                if user not in user_dict:
+                    user_dict[user] = [(int(item), float(score))]
+                else:
+                    user_dict[user].append((int(item), float(score)))
 
-                    f.write(f"{user},{selection},{rating}")
-                    f.write("\n")
-        else :
-            user_dict = collections.OrderedDict()
+        user_sample = np.random.choice(list(user_dict), 5500)
 
-            # create a dictionary of
-            # {user1: [(item0, rank), (item1, rank), (item2, rank), ...],
-            # user2: [...], user3:[...],...}
-            for entry in data:
-                if entry:
-                    user, item, score = entry.split(',')
-                    if user not in user_dict:
-                        user_dict[user] = [(int(item), float(score))]
-                    else:
-                        user_dict[user].append((int(item), float(score)))
+        # write the new ratings into the duplicate ratings.csv for next round of simulation
+        with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
+            for user in user_sample:
 
-            user_sample = np.random.choice(list(user_dict), 5500)
+                # choose rating based on an existing probability distribution
+                selection, rating = utils.rate_item(user, user_dict[user], sel_type)
 
-            # write the new ratings into the duplicate ratings.csv for next round of simulation
-            with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
-                for user in user_sample:
+                # insert the (user, item, rating) tuple into the ratings.csv
+                f.write(f"{user},{selection},{rating}")
+                f.write("\n")
 
-                    # choose rating based on an existing probability distribution
-                    selection, rating = utils.rate_item(user, user_dict[user], sel_type)
-
-                    # insert the (user, item, rating) tuple into the ratings.csv
-                    f.write(f"{user},{selection},{rating}")
-                    f.write("\n")
-
-            itr += 1
-
-
+        itr += 1
 
     end_time = time.time()
 
