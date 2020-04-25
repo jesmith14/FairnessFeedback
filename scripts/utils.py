@@ -18,7 +18,8 @@ def softmax(vector):
 def get_average_previous(item):
     item_ratings = ratings_df[ratings_df['movieId']==item]
     # TODO: do we want it to be just the item ratings for that particular user? or for everyone?
-    return item_ratings['rating'].mean()
+    return round(np.random.normal(item_ratings['rating'].mean(), 0.5) * 2) / 2
+
 # https://medium.com/hacktive-devs/recommender-system-made-easy-with-scikit-surprise-569cbb689824
 def surprise_cf(rating_path) :
     reader = Reader()
