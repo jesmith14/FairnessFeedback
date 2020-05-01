@@ -20,9 +20,9 @@ The second step is necessary to get the evaluation result for the html page from
 `python -m librec_auto run base_recommender`
 
 ### How to run the simulation:
-`python run_simulation.py -i 5 -r base`
+`python run_simulation.py -i 5 -r base -s best`
 
-`python run_simulation.py -i 5 -r fair`
+`python run_simulation.py -i 5 -r fair -s explore`
 
 For help
 `python run_simulation.py -h`

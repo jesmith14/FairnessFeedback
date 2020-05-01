@@ -18,6 +18,12 @@
 		<format>UIR</format>
 		<data-file format="text">ratings_dup.csv</data-file>
 	</data>
+
+	<!-- FEATURES SECTION -->
+	<features>
+		<appender-class>net.librec.data.convertor.appender.ItemFeatureAppender</appender-class>
+		<item-feature-file>item-features-fixed-2.csv</item-feature-file>
+	</features>
 	
 	<!-- SPLITTER SECTION -->
 	<splitter>
@@ -49,7 +55,10 @@
 	<metric>
 		<ranking>true</ranking>
 		<list-size>10</list-size>
-		<class>precision,recall</class>
+		<!-- <class>precision,recall</class> -->
+		<class>precision,recall,net.librec.eval.ranking.StatisticalParityEvaluator,net.librec.eval.ranking.DiscountedProportionalPFairnessEvaluator</class>
+		<!-- We need to figure out the protected feature part -->
+		<protected-feature>protected</protected-feature>
 	</metric>
 	
 	<!-- POST-PROCESSING SECTION -->

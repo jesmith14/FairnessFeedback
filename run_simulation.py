@@ -1,8 +1,10 @@
 import sys
 import os
-import random
+import collections
+import numpy as np
 import time
 import argparse
+from scripts import utils
 
 def main():
     parser = argparse.ArgumentParser(description='Recommendation simulator',
@@ -10,21 +12,29 @@ def main():
 
     # Fundamental options
     parser.add_argument('-i', type=int, default=2,
-                        help='Simulation rounds for [fair|base] recommender')
+                        help='Simulation rounds for running the recommender')
     parser.add_argument('-r', type=str, default='base',
                         help='Type of recommender [fair|base]')
+
+    # "best" chooses the top ranked item for a user
+    # "explore" uses softmax of recommended items as probability distribution for selection
+    parser.add_argument('-s', type=str, default='explore',
+                        help='Type of user selection [best|explore|random]')
 
     args = parser.parse_args()
 
     sim_itrs = args.i
     rec_type = args.r
+    sel_type = args.s
 
     # set paths needed
-    # TODO: need to take care of exp00000 vs exp00001
+    # [AZ] For now we will just go with exp00001
     root_dir = os.getcwd()
     data_file = f"{root_dir}/{rec_type}_recommender/data/ratings.csv"
     dup_file = f"{root_dir}/{rec_type}_recommender/data/ratings_dup.csv"
-    result_path = f"{root_dir}/{rec_type}_recommender/exp00000/result"
+    result_path = f"{root_dir}/{rec_type}_recommender/exp00001/result"
+    scripts_path = f"{root_dir}/scripts"
+    log_path = f"{root_dir}/{rec_type}_recommender/exp00001/log"
 
     # delete the existing duplicate ratings file if exists
     if os.path.exists(data_file):
@@ -39,19 +49,29 @@ def main():
 
     itr = 0
     while itr < sim_itrs:
-        
+        utils.load_ratings(dup_file)
+        print(f"***********************Running simulation {itr+1}***********************")
+
+        print("----------------------Train Run----------------------")
+
         # training run
         os.system(f"python -m librec_auto run {rec_type}_recommender -q")
 
+        os.system(f"python3 scripts/extract_log_info.py {log_path} librec.log simulation_log_data.csv {itr} 1")
+
+        print("----------------------Eval Run----------------------")
+
         # eval run
         os.system(f"python -m librec_auto eval {rec_type}_recommender -q")
+
+        os.system(f"python3 scripts/extract_log_info.py {log_path} librec.log simulation_log_data_reranked.csv {itr} 1")
 
         # "files" include [out-1, out-2, .....]
         # TODO: figure out a way to use all out-*.txt files, if possible
         files = os.listdir(result_path)
 
         # choose one of the "out-*.txt" file
-        result = random.choice(files)
+        result = np.random.choice(files)
 
         file_path = f"{result_path}/{result}"
 
@@ -59,45 +79,30 @@ def main():
             data = f.read().split("\n")
         f.close()
 
+        user_dict = collections.OrderedDict()
 
-        user_dict = {}
-
-        # create a dictionary of {user: [(item0, rank), (item1, rank), (item2, rank), ...]}
+        # create a dictionary of
+        # {user1: [(item0, rank), (item1, rank), (item2, rank), ...],
+        # user2: [...], user3:[...],...}
         for entry in data:
             if entry:
-                user, item, rank = entry.split(",")
+                user, item, score = entry.split(',')
                 if user not in user_dict:
-                    user_dict[user] = [(int(item), float(rank))]
+                    user_dict[user] = [(int(item), float(score))]
                 else:
-                    user_dict[user].append((int(item), float(rank)))
+                    user_dict[user].append((int(item), float(score)))
 
-        sample_users = random.sample(user_dict.keys(), 10)
-
-        ratings = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]
-        
-        # random weights assigned to the ratings
-        # can be modified based on some scale
-        weights = [0.01, 0.03, 0.04, 0.1, 0.12, 0.18, 0.2, 0.13, 0.1, 0.07]
-
-        new_ratings = []
+        user_sample = np.random.choice(list(user_dict), 5500)
 
         # write the new ratings into the duplicate ratings.csv for next round of simulation
         with open(f"{os.getcwd()}/{rec_type}_recommender/data/ratings_dup.csv", "a") as f:
-            for user in sample_users:
-                
-                # choose the highest ranked.
-                # item = 0
-                
-                # choose random item for different users.
-                # item_number: index of the item for a particular user in the user_dict
-                item_number = random.choice(range(10))
-                
+            for user in user_sample:
+
                 # choose rating based on an existing probability distribution
-                rating = random.choices(ratings, weights=weights, k=1)
-                # print(f"User: {user} \tItem: {user_dict[user][item_number][0]} \tRating: {rating[0]}")
-                
-                # insert the (user, item_number, rating) tuple into the ratings.csv
-                f.write(f"{user},{user_dict[user][0][0]},{rating[0]}")
+                selection, rating = utils.rate_item(user, user_dict[user], sel_type)
+
+                # insert the (user, item, rating) tuple into the ratings.csv
+                f.write(f"{user},{selection},{rating}")
                 f.write("\n")
 
         itr += 1
